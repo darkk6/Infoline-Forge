@@ -1,0 +1,16 @@
+[
+{
+  "modid": "infoline",
+  "name": "Info line",
+  "description": "Show some ingame info on screen",
+  "version": "1.0-mc1.9.4",
+  "mcversion": "1.9.4",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["darkk6"],
+  "credits": "Forge , MCP",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
