@@ -52,9 +52,10 @@ public class Coordinate extends IModBase {
 		if(!result.matches(".*\\{[XYZF]\\}.*")) return "";
 		BlockPos pos = Util.getPlayerPos();
 		if(pos==null) return "Get playe coordinate error.";
-		String facing="";
+		String facing="",pitch="";
 		Entity player=Minecraft.getMinecraft().thePlayer;
 		facing=getFacing(player);
+		pitch=getPitch(player);
 		String posY="";
 		if(config.useColor.getBoolean()){
 			int y=pos.getY();
@@ -68,8 +69,15 @@ public class Coordinate extends IModBase {
 		result=result.replaceAll("\\{X\\}",String.valueOf(pos.getX()))
 				.replaceAll("\\{Y\\}",posY)
 				.replaceAll("\\{Z\\}",String.valueOf(pos.getZ()))
-				.replaceAll("\\{F\\}",facing);
+				.replaceAll("\\{F\\}",facing)
+				.replaceAll("\\{P\\}",pitch);
 		return result;
+	}
+	
+	private String getPitch(Entity entity){
+		if(entity==null) return "";
+		float pitch=entity.rotationPitch;
+		return String.format("%.02f", pitch);
 	}
 	
 	private String getFacing(Entity entity){

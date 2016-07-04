@@ -21,6 +21,7 @@ import tw.darkk6.mcmod.infoline.config.ConfigMgr;
 import tw.darkk6.mcmod.infoline.config.Reference;
 import tw.darkk6.mcmod.infoline.mod.Coordinate;
 import tw.darkk6.mcmod.infoline.mod.IModBase;
+import tw.darkk6.mcmod.infoline.util.Util;
 
 public class EventHandler {
 	//============== Mod 設定檔儲存事件 =================
@@ -69,7 +70,10 @@ public class EventHandler {
 		String xyz=Coordinate.instance.getCoordInChatStr();
 		if(xyz==null) return;
 		try{
-			if(inputfield==null) inputfield=GuiChat.class.getDeclaredField("inputField");
+			if(inputfield==null){
+				inputfield=Util.tryToGetField(GuiChat.class,"inputField","field_146415_a","a");
+				if(inputfield==null) return;
+			}
 			inputfield.setAccessible(true);
 			GuiTextField iptField = (GuiTextField)inputfield.get(guiChatObj);
 			iptField.writeText(xyz);

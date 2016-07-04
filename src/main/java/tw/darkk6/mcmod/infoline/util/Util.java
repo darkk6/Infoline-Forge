@@ -1,5 +1,7 @@
 package tw.darkk6.mcmod.infoline.util;
 
+import java.lang.reflect.Field;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.BlockPos;
 
@@ -12,5 +14,16 @@ public class Util {
 		int z = (int) Math.floor(mc.thePlayer.posZ);
 		BlockPos pos = new BlockPos(x, y, z);
 		return pos;
+	}
+	
+	
+	public static Field tryToGetField(Class clz,String...names){
+		for(String name:names){
+			try{
+				Field f=clz.getDeclaredField(name);
+				return f;
+			}catch(NoSuchFieldException e){}
+		}
+		return null;
 	}
 }
